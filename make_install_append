@@ -1,0 +1,2 @@
+mkdir -p %{buildroot}/usr/share/defaults/khal/
+cp khal.conf.sample %{buildroot}/usr/share/defaults/khal/

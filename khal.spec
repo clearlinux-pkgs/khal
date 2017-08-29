@@ -4,7 +4,7 @@
 #
 Name     : khal
 Version  : 0.9.6
-Release  : 2
+Release  : 3
 URL      : http://pypi.debian.net/khal/khal-0.9.6.tar.gz
 Source0  : http://pypi.debian.net/khal/khal-0.9.6.tar.gz
 Summary  : A standards based terminal calendar
@@ -12,6 +12,7 @@ Group    : Development/Tools
 License  : MIT
 Requires: khal-bin
 Requires: khal-python
+Requires: khal-data
 Requires: Sphinx
 Requires: atomicwrites
 Requires: click
@@ -42,9 +43,18 @@ BuildRequires : virtualenv
 %package bin
 Summary: bin components for the khal package.
 Group: Binaries
+Requires: khal-data
 
 %description bin
 bin components for the khal package.
+
+
+%package data
+Summary: data components for the khal package.
+Group: Data
+
+%description data
+data components for the khal package.
 
 
 %package python
@@ -63,7 +73,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1504044358
+export SOURCE_DATE_EPOCH=1504047694
 python3 setup.py build -b py3
 
 %install
@@ -72,6 +82,10 @@ python3 -tt setup.py build -b py3 install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
+## make_install_append content
+mkdir -p %{buildroot}/usr/share/defaults/khal/
+cp khal.conf.sample %{buildroot}/usr/share/defaults/khal/
+## make_install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -80,6 +94,10 @@ echo ----[ mark ]----
 %defattr(-,root,root,-)
 /usr/bin/ikhal
 /usr/bin/khal
+
+%files data
+%defattr(-,root,root,-)
+/usr/share/defaults/khal/khal.conf.sample
 
 %files python
 %defattr(-,root,root,-)
