@@ -4,15 +4,16 @@
 #
 Name     : khal
 Version  : 0.9.7
-Release  : 5
+Release  : 6
 URL      : http://pypi.debian.net/khal/khal-0.9.7.tar.gz
 Source0  : http://pypi.debian.net/khal/khal-0.9.7.tar.gz
 Summary  : A standards based terminal calendar
 Group    : Development/Tools
 License  : MIT
 Requires: khal-bin
-Requires: khal-python
+Requires: khal-python3
 Requires: khal-data
+Requires: khal-python
 Requires: Sphinx
 Requires: atomicwrites
 Requires: click
@@ -60,9 +61,19 @@ data components for the khal package.
 %package python
 Summary: python components for the khal package.
 Group: Default
+Requires: khal-python3
 
 %description python
 python components for the khal package.
+
+
+%package python3
+Summary: python3 components for the khal package.
+Group: Default
+Requires: python3-core
+
+%description python3
+python3 components for the khal package.
 
 
 %prep
@@ -73,7 +84,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1506625383
+export SOURCE_DATE_EPOCH=1507155942
 python3 setup.py build -b py3
 
 %install
@@ -100,5 +111,8 @@ cp khal.conf.sample %{buildroot}/usr/share/defaults/khal/
 /usr/share/defaults/khal/khal.conf.sample
 
 %files python
+%defattr(-,root,root,-)
+
+%files python3
 %defattr(-,root,root,-)
 /usr/lib/python3*/*
