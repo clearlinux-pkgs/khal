@@ -4,7 +4,7 @@
 #
 Name     : khal
 Version  : 0.9.8
-Release  : 11
+Release  : 12
 URL      : http://pypi.debian.net/khal/khal-0.9.8.tar.gz
 Source0  : http://pypi.debian.net/khal/khal-0.9.8.tar.gz
 Summary  : A standards based terminal calendar
@@ -14,7 +14,6 @@ Requires: khal-bin
 Requires: khal-python3
 Requires: khal-data
 Requires: khal-python
-Requires: Sphinx
 Requires: atomicwrites
 Requires: click
 Requires: configobj
@@ -84,7 +83,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1519340617
+export SOURCE_DATE_EPOCH=1519423266
 python3 setup.py build -b py3
 
 %install
