@@ -4,7 +4,7 @@
 #
 Name     : khal
 Version  : 0.9.8
-Release  : 12
+Release  : 13
 URL      : http://pypi.debian.net/khal/khal-0.9.8.tar.gz
 Source0  : http://pypi.debian.net/khal/khal-0.9.8.tar.gz
 Summary  : A standards based terminal calendar
