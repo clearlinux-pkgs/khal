@@ -4,7 +4,7 @@
 #
 Name     : khal
 Version  : 0.9.9
-Release  : 21
+Release  : 22
 URL      : http://pypi.debian.net/khal/khal-0.9.9.tar.gz
 Source0  : http://pypi.debian.net/khal/khal-0.9.9.tar.gz
 Summary  : A standards based terminal calendar
@@ -13,6 +13,7 @@ License  : MIT
 Requires: khal-bin
 Requires: khal-python3
 Requires: khal-data
+Requires: khal-license
 Requires: khal-python
 Requires: atomicwrites
 Requires: click
@@ -25,17 +26,14 @@ Requires: pyxdg
 Requires: setproctitle
 Requires: sphinxcontrib-newsfeed
 Requires: tzlocal
-BuildRequires : pbr
-BuildRequires : pip
+BuildRequires : buildreq-distutils3
 BuildRequires : pluggy
 BuildRequires : py-python
 BuildRequires : pytest
-
-BuildRequires : python3-dev
-BuildRequires : setuptools
 BuildRequires : setuptools_scm
 BuildRequires : tox
 BuildRequires : virtualenv
+Patch1: req.patch
 
 %description
 ====
@@ -43,7 +41,8 @@ BuildRequires : virtualenv
 %package bin
 Summary: bin components for the khal package.
 Group: Binaries
-Requires: khal-data
+Requires: khal-data = %{version}-%{release}
+Requires: khal-license = %{version}-%{release}
 
 %description bin
 bin components for the khal package.
@@ -57,10 +56,18 @@ Group: Data
 data components for the khal package.
 
 
+%package license
+Summary: license components for the khal package.
+Group: Default
+
+%description license
+license components for the khal package.
+
+
 %package python
 Summary: python components for the khal package.
 Group: Default
-Requires: khal-python3
+Requires: khal-python3 = %{version}-%{release}
 
 %description python
 python components for the khal package.
@@ -77,25 +84,29 @@ python3 components for the khal package.
 
 %prep
 %setup -q -n khal-0.9.9
+%patch1 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1527436911
-python3 setup.py build -b py3
+export SOURCE_DATE_EPOCH=1537972706
+python3 setup.py build
 
 %install
 rm -rf %{buildroot}
-python3 -tt setup.py build -b py3 install --root=%{buildroot}
+mkdir -p %{buildroot}/usr/share/doc/khal
+cp COPYING %{buildroot}/usr/share/doc/khal/COPYING
+cp doc/source/license.rst %{buildroot}/usr/share/doc/khal/doc_source_license.rst
+python3 -tt setup.py build  install --root=%{buildroot}
 echo ----[ mark ]----
 cat %{buildroot}/usr/lib/python3*/site-packages/*/requires.txt || :
 echo ----[ mark ]----
-## make_install_append content
+## install_append content
 mkdir -p %{buildroot}/usr/share/defaults/khal/
 cp khal.conf.sample %{buildroot}/usr/share/defaults/khal/
-## make_install_append end
+## install_append end
 
 %files
 %defattr(-,root,root,-)
@@ -108,6 +119,11 @@ cp khal.conf.sample %{buildroot}/usr/share/defaults/khal/
 %files data
 %defattr(-,root,root,-)
 /usr/share/defaults/khal/khal.conf.sample
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/doc/khal/COPYING
+/usr/share/doc/khal/doc_source_license.rst
 
 %files python
 %defattr(-,root,root,-)
