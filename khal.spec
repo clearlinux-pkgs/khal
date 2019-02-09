@@ -4,10 +4,10 @@
 #
 Name     : khal
 Version  : 0.9.10
-Release  : 24
+Release  : 25
 URL      : https://files.pythonhosted.org/packages/fc/f0/c5da6fe8b8be51b865fbc3b4ff44d9f46fe9426b69a82d5e058a64924d1b/khal-0.9.10.tar.gz
 Source0  : https://files.pythonhosted.org/packages/fc/f0/c5da6fe8b8be51b865fbc3b4ff44d9f46fe9426b69a82d5e058a64924d1b/khal-0.9.10.tar.gz
-Summary  : A standards based terminal calendar
+Summary  : CLI calendar application build around CalDAV
 Group    : Development/Tools
 License  : MIT
 Requires: khal-bin = %{version}-%{release}
@@ -24,7 +24,6 @@ Requires: python-urwid
 Requires: pytz
 Requires: pyxdg
 Requires: setproctitle
-Requires: sphinxcontrib-newsfeed
 Requires: tzlocal
 BuildRequires : buildreq-distutils3
 BuildRequires : pluggy
@@ -35,7 +34,10 @@ BuildRequires : tox
 BuildRequires : virtualenv
 
 %description
+khal
 ====
+.. image:: https://travis-ci.org/pimutils/khal.svg?branch=master
+:target: https://travis-ci.org/pimutils/khal
 
 %package bin
 Summary: bin components for the khal package.
@@ -89,7 +91,8 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1540917284
+export SOURCE_DATE_EPOCH=1549686794
+export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
 %install
