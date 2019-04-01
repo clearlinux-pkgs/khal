@@ -1,5 +1,5 @@
 PKG_NAME := khal
-URL = https://files.pythonhosted.org/packages/fc/f0/c5da6fe8b8be51b865fbc3b4ff44d9f46fe9426b69a82d5e058a64924d1b/khal-0.9.10.tar.gz
+URL = https://files.pythonhosted.org/packages/f7/45/555398810c14f572ea9ff8e92cd4f6e492ba8c50da1241fad58e58234463/khal-0.10.1.tar.gz
 ARCHIVES = 
 
 include ../common/Makefile.common
