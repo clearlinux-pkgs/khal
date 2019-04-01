@@ -4,7 +4,7 @@
 #
 Name     : khal
 Version  : 0.10.1
-Release  : 26
+Release  : 27
 URL      : https://files.pythonhosted.org/packages/f7/45/555398810c14f572ea9ff8e92cd4f6e492ba8c50da1241fad58e58234463/khal-0.10.1.tar.gz
 Source0  : https://files.pythonhosted.org/packages/f7/45/555398810c14f572ea9ff8e92cd4f6e492ba8c50da1241fad58e58234463/khal-0.10.1.tar.gz
 Summary  : CLI calendar application build around CalDAV
@@ -17,6 +17,7 @@ Requires: khal-python = %{version}-%{release}
 Requires: khal-python3 = %{version}-%{release}
 Requires: atomicwrites
 Requires: click
+Requires: click-log
 Requires: configobj
 Requires: icalendar
 Requires: python-dateutil
@@ -92,7 +93,7 @@ export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1554132202
+export SOURCE_DATE_EPOCH=1554135699
 export MAKEFLAGS=%{?_smp_mflags}
 python3 setup.py build
 
