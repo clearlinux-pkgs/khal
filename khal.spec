@@ -4,7 +4,7 @@
 #
 Name     : khal
 Version  : 0.10.4
-Release  : 48
+Release  : 49
 URL      : https://files.pythonhosted.org/packages/7a/d8/9718385de260ebc07ff48c838e22fde6b05d143f1f8ab81ff1c8718d7102/khal-0.10.4.tar.gz
 Source0  : https://files.pythonhosted.org/packages/7a/d8/9718385de260ebc07ff48c838e22fde6b05d143f1f8ab81ff1c8718d7102/khal-0.10.4.tar.gz
 Summary  : A standards based terminal calendar
